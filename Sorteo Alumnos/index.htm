@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sorteo de alumnos para PUNTOS EXTRAS</title>
+        <h1 id="myHeader">Posición Ganadora : *</h1>
+
+        <style>
+                        
+            table {
+                border-spacing: 0;
+                width: 40%;
+                border: 1px solid #ddd;
+                display:inline-table ;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 16px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <p>Click en el botón para generar el siguiente alumno a evaluar:</p>
+        <p><button onclick="generateRandomStudent()">Nuevo alumno al azar</button></p>
+    
+        <table id="myTableOriginal">
+            <tr>
+                <th>Lista Original</th>
+            </tr>
+    
+            
+            <tr>
+                <td>1.-KARINA ALEJANDRA</td>
+            </tr>
+    
+            
+            <tr>
+                <td>2.-EDGAR JAVIER</td>
+            </tr>
+            <tr>
+                <td>3.-MIGUEL ANTONIO</td>
+            </tr>
+            <tr>
+                <td>4.-JESUS DANIEL</td>
+            </tr>
+            <tr>
+                <td>5.-CARLOS ALEXIS</td>
+            </tr>
+            <tr>
+                <td>6.-EDGAR EDUARDO</td>
+            </tr>
+            <tr>
+                <td>7.-JOSE ANGEL</td>
+            </tr>
+            <tr>
+                <td>8.-ANGEL URIEL</td>
+            </tr>
+        </table>
+
+        <table id="myTableSorteo">
+            <tr>
+                <th>Lista generada al azar</th>
+            </tr>
+    
+            <tr>
+                <td>1.-</td>
+            </tr>
+    
+            <tr>
+                <td>2.-</td>
+            </tr>
+
+            <tr>
+                <td>3.-</td>
+            </tr>
+
+            <tr>
+                <td>4.-</td>
+            </tr>
+
+            <tr>
+                <td>5.-</td>
+            </tr>
+
+            <tr>
+                <td>6.-</td>
+            </tr>
+
+            <tr>
+                <td>7.-</td>
+            </tr>
+
+            <tr>
+                <td>8.-</td>
+            </tr>
+        </table>
+    
+    <script>
+        var transaccion = 0; 
+        var alumnosxsortear = 0;
+        var tableoriginal, tablesorteo, rowsoriginal, rowssorteo;
+
+        tableoriginal = document.getElementById("myTableOriginal");
+        tablesorteo = document.getElementById("myTableSorteo");
+
+        alumnosxsortear = tableoriginal.rows.length-1;
+
+        rowsoriginal = tableoriginal.rows;
+        rowssorteo = tablesorteo.rows;
+
+        
+            
+        function generateRandomStudent () {
+            var randomindex;
+            
+            console.log ("aluXsor: " + alumnosxsortear);
+            randomindex = Math.trunc (Math.random () * alumnosxsortear + 1);
+            console.log ("ranInde: " + randomindex);
+            
+            if (alumnosxsortear >= 1) {
+                
+                alert ("POSICION GANADORA: " + randomindex);
+                document.getElementById('myHeader').innerHTML = "Posición Ganadora : " + randomindex;
+                
+
+                moveralumno (randomindex);
+            } else {
+                        alert ("Ya no hay mas alumnos, sorry");  
+                    }
+        }
+
+        function moveralumno (ialumno) {
+                      
+            console.log ("ialumno : " + ialumno);
+            console.log ("aluEleg: " + ialumno);
+            console.log ("Trans: " + transaccion);
+      
+            ++transaccion;    
+            
+            rowssorteo[transaccion].getElementsByTagName("TD")[0].innerHTML = 
+            transaccion + ".- " + "#Original-> " + rowsoriginal[ialumno].getElementsByTagName("TD")[0].innerHTML;
+
+            tableoriginal.deleteRow(ialumno);
+            
+            --alumnosxsortear;
+        }
+
+        
+
+    </script>
+</html>
+
+
